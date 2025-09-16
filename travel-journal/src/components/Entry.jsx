@@ -1,19 +1,23 @@
-const Entry = ({ name, country, date, text, img, location }) => {
+import data from "./data";
+
+const Entry = () => {
   return (
     <>
-      <article className="journal-entry">
-        <div className="main-image-container">
-          <img className="main-image" src={img} alt={name} />
-        </div>
-        <div className="info-container">
-          <img className="marker" src="/marker.png" alt="map marker icon" />
-          <span className="country">{country} </span>
-          <a href={location}>View on Google Maps</a>
-          <h2 className="entry-title">{name}</h2>
-          <p className="trip-dates"> {date}</p>
-          <p className="entry-text">{text}</p>
-        </div>
-      </article>
+      {data.map((data) => (
+        <article key={data.id} className="journal-entry">
+          <div className="main-image-container">
+            <img className="main-image" src={data.img.src} alt={data.img.alt} />
+          </div>
+          <div className="info-container">
+            <img className="marker" src="/marker.png" alt="map marker icon" />
+            <span className="country">{data.country} </span>
+            <a href={data.googleMapsLink}>View on Google Maps</a>
+            <h2 className="entry-title">{data.title}</h2>
+            <p className="trip-dates"> {data.dates}</p>
+            <p className="entry-text">{data.text}</p>
+          </div>
+        </article>
+      ))}
     </>
   );
 };
